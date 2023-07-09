@@ -1,41 +1,19 @@
 import { Radio, RadioGroup, Select, TextArea, TextInput } from '@/components';
 import { SALARY_OPTIONS } from '@/constants';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { SubmitHandler, useForm } from 'react-hook-form';
-import { InferType, object, string } from 'yup';
-
-const schema = object().shape({
-  department: string().required('*required'),
-  dream: string()
-    .required('Please tell us what your dreams are.')
-    .min(10, 'Please write more than 10 characters.'),
-  email: string()
-    .required('Please write down your email.')
-    .matches(/@naver\.com$/, 'Only @naver is allowed'),
-  intro: string().required('Please write down your introduction.'),
-  motivation: string().required('*required'),
-  salary: string().required('*required'),
-});
-type FormValues = InferType<typeof schema>;
+import { useJobForm } from '@/hooks';
 
 export default function Home() {
   const {
     formState: { errors },
-    handleSubmit,
+    onSubmit,
     register,
-  } = useForm({
-    resolver: yupResolver(schema),
-  });
-
-  const onSubmit: SubmitHandler<FormValues> = (data) => {
-    console.log(data);
-  };
+  } = useJobForm();
 
   return (
     <div className="mx-auto lg:w-1/3 md:w-1/2  my-16">
       <section className="border border-blue-800	 border-r-4 rounded-lg items-center p-10 bg-white">
         <h1 className="text-center font-bold text-2xl mb-10">Job Application Form</h1>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={onSubmit}>
           <RadioGroup
             className="mb-4"
             error={errors.department?.message}
