@@ -28,7 +28,7 @@ function TextArea(
     <div className="flex flex-col">
       {label && <label className="text-lg mb-1">{label}</label>}
       <textarea
-        className={`${resize} ${outline} ${borderColor} h-28 border-2 rounded-md`}
+        className={`${resize} ${outline} ${borderColor} h-28 border-2 rounded-md p-2 text-sm`}
         {...props}
         ref={ref}
       />

@@ -19,7 +19,7 @@ function Select({ label, options: optionsProp, ...props }: SelectProps, ref: Rea
         {label}
       </label>
       <select
-        className="border-2 border-black pl-2 rounded-md outline-blue-800"
+        className="border-2 border-black pl-2 rounded-md outline-blue-800 text-sm"
         id={id}
         {...props}
         ref={ref}
